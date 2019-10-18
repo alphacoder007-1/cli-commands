@@ -1,4 +1,4 @@
-Docker Basics Commands Example
+Docker Basic Commands Example
 ===================================
 
 ### Clone the following project 
@@ -32,6 +32,10 @@ Docker Image Commands
 
 	docker image list
 
+### List all images
+
+	docker images
+
 ### Pull down the image
 
 	docker pull [image name] 
@@ -54,9 +58,21 @@ Docker Containers Commands
 
 	docker run -it [image-name] [container-name] 
 
+### Spinning Container from Image
+
+	docker run -it --rm -p 5000:80 --name [Container-Name] [Image-Name]
+
+- -it flag will take all the ouput from the container and pipe it to console window
+- --rm will remove the intermediary build
+- -p will map the port 80 from the container to port 5000 on local machine  
+
 ### List all the containers running
 	
 	docker container list
+
+### List all the running containers
+
+	docker ps
 
 ### Stop the running container
 	
@@ -69,6 +85,32 @@ Docker Containers Commands
 ### delete the container 
 
 	docker container rm [Container-Name/Container-id]
+
+### Remove all build cache, stopped containers and dangling images 
+
+	docker system prune
+
+Docker for SQL Server 
+=====================================
+
+### Docker command for SQL Server image 
+
+	docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Docker@1' -e 'MSSQL_PID=express' -p 1445:1433 --name=moviesdb microsoft/mssql-server-linux:latest
+
+- Provide _localhost,1445_ as server name when you open SSMS
+- Provide Login as _sa_
+- Provide password as  _Docker@1_
+
+### Connecting to SQL Server via command line
+
+	docker exec -it moviesdb /opt/mssql-tools/bin/sqlcmd -S localhost -U sa
+
+- -s means server
+- -u means user
+
+
+
+
 
 
 
