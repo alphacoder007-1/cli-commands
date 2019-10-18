@@ -1,5 +1,5 @@
-Docker Commands from Docker website
-====================================
+Docker Basics Commands Example
+===================================
 
 ### Clone the following project 
 
@@ -21,13 +21,12 @@ Docker Commands from Docker website
 	docker push alphacoder007/cheers2019
 
 
-Docker Commands Basics 
-==========================
+Docker Image Commands 
+========================
 
 ### Version of the doker installed
 
 	Docker -v
-
 
 ### List all the images
 
@@ -40,5 +39,37 @@ Docker Commands Basics
 ### Remove images
 
 	docker rmi imagename/image_id 
+
+### Build image
+
+	docker build -t [App-ImageName] . 
+
+- -t tags as image
+- . means current directory
+
+Docker Containers Commands 
+===========================
+
+### Run the docker images in a container
+
+	docker run -it [image-name] [container-name] 
+
+### List all the containers running
+	
+	docker container list
+
+### Stop the running container
+	
+	docker stop [Container-name/Container-id]
+	
+### List all the containers available
+
+	docker container list -a
+
+### delete the container 
+
+	docker container rm [Container-Name/Container-id]
+
+
 
  
