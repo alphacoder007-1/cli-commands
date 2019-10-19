@@ -115,15 +115,15 @@ Pushing Image to docker hub
 
 - First we need to tag the image with our username 
 
-	docker tag [imageid] [username]/[imagename]:tag
+		docker tag [imageid] [username]/[imagename]:tag
 
 - Secondly, We need to login  
 
-	docker login
+		docker login
 
 - And finally we need to push 
 
-	docker push [username]/[imagename]:[tag]
+		docker push [username]/[imagename]:[tag]
 
 
 
