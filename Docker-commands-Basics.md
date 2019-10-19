@@ -30,11 +30,9 @@ Docker Image Commands
 
 ### List all the images
 
-	docker image list
-
-### List all images
-
 	docker images
+
+	docker image list
 
 ### Pull down the image
 
@@ -46,7 +44,7 @@ Docker Image Commands
 
 ### Build image
 
-	docker build -t [App-ImageName] . 
+	docker build -t [app-image-name] . 
 
 - -t tags as image
 - . means current directory
@@ -58,8 +56,6 @@ Docker Containers Commands
 
 	docker run -it [image-name] [container-name] 
 
-### Spinning Container from Image
-
 	docker run -it --rm -p 5000:80 --name [Container-Name] [Image-Name]
 
 - -it flag will take all the ouput from the container and pipe it to console window
@@ -68,15 +64,13 @@ Docker Containers Commands
 
 ### List all the containers running
 	
-	docker container list
-
-### List all the running containers
-
 	docker ps
+
+	docker container list
 
 ### Stop the running container
 	
-	docker stop [Container-name/Container-id]
+	docker stop [container-name/container-id]
 	
 ### List all the containers available
 
@@ -84,7 +78,7 @@ Docker Containers Commands
 
 ### delete the container 
 
-	docker container rm [Container-Name/Container-id]
+	docker container rm [container-name/container-id]
 
 ### Remove all build cache, stopped containers and dangling images 
 
@@ -107,6 +101,30 @@ Docker for SQL Server
 
 - -s means server
 - -u means user
+
+Docker Compose Commands
+==============================
+
+### Run the docker compose file
+	
+	docker-compose up
+
+
+Pushing Image to docker hub
+=================================
+
+1. First we need to tag the image with our username 
+
+	docker tag [imageid] [username]/[imagename]:tag
+
+2. Secondly, We need to login  
+
+	docker login
+
+3. And finally we need to push 
+
+	docker push [username]/[imagename]:[tag]
+
 
 
 
