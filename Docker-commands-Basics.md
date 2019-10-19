@@ -113,15 +113,15 @@ Docker Compose Commands
 Pushing Image to docker hub
 =================================
 
-1. First we need to tag the image with our username 
+- First we need to tag the image with our username 
 
 	docker tag [imageid] [username]/[imagename]:tag
 
-2. Secondly, We need to login  
+- Secondly, We need to login  
 
 	docker login
 
-3. And finally we need to push 
+- And finally we need to push 
 
 	docker push [username]/[imagename]:[tag]
 
