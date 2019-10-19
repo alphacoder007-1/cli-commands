@@ -36,15 +36,15 @@ Docker Image Commands
 
 ### Pull down the image
 
-	docker pull [image name] 
+	docker pull [image-name] 
 
 ### Remove images
 
-	docker rmi imagename/image_id 
+	docker rmi [imagename/imageid] 
 
 ### Build image
 
-	docker build -t [app-image-name] . 
+	docker build -t [imagename] . 
 
 - -t tags as image
 - . means current directory
@@ -54,9 +54,9 @@ Docker Containers Commands
 
 ### Run the docker images in a container
 
-	docker run -it [image-name] [container-name] 
+	docker run -it [container-name] [image-name] 
 
-	docker run -it --rm -p 5000:80 --name [Container-Name] [Image-Name]
+	docker run -it --rm -p 5000:80 --name [container-name] [image-name]
 
 - -it flag will take all the ouput from the container and pipe it to console window
 - --rm will remove the intermediary build
