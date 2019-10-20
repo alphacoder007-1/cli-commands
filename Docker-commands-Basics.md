@@ -52,9 +52,11 @@ Docker Image Commands
 Docker Containers Commands 
 ===========================
 
-### Run the docker images in a container
+### Run the docker images in a container (Option 1)
 
 	docker run -it [image-name] [container-name]  
+
+### Run the docker images in a container (Option 2)
 
 	docker run -it --rm -p 5000:80 --name [container-name] [image-name] 
 
@@ -91,13 +93,15 @@ Docker for SQL Server
 
 	docker pull mcr.microsoft.com/mssql/server:2019-CTP3.2-ubuntu
 
-### Docker command for SQL Server image 
+### Docker command for SQL Server image (Option 1)
 
 	docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Docker@1' -e 'MSSQL_PID=express' -p 1445:1433 --name=moviesdb microsoft/mssql-server-linux:latest
 
 - Provide _localhost,1445_ as server name when you open SSMS
 - Provide Login as _sa_
 - Provide password as  _Docker@1_
+
+### Docker command for SQL Server image (Option 2)
 
 	docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Docker@1" -p 1433:1433 --name sql1 -d mcr.microsoft.com/mssql/server:2019-CTP3.2-ubuntu
 
