@@ -87,6 +87,10 @@ Docker Containers Commands
 Docker for SQL Server 
 =====================================
 
+### Pull the sql server 2019 image
+
+	docker pull mcr.microsoft.com/mssql/server:2019-CTP3.2-ubuntu
+
 ### Docker command for SQL Server image 
 
 	docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Docker@1' -e 'MSSQL_PID=express' -p 1445:1433 --name=moviesdb microsoft/mssql-server-linux:latest
@@ -95,12 +99,60 @@ Docker for SQL Server
 - Provide Login as _sa_
 - Provide password as  _Docker@1_
 
+	docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Docker@1" -p 1433:1433 --name sql1 -d mcr.microsoft.com/mssql/server:2019-CTP3.2-ubuntu
+
+- -e "ACCEPT_EULA=Y" - 	acceptance of the End-User Licensing Agreement
+- -e "SA_PASSWORD=<YourStrong@Passw0rd\>" -	The password should follow the SQL Server default password policy
+- -p 1433:1433 -	Map a TCP port on the host environment (first value) with a TCP port in the container (second value). 
+					In this example, SQL Server is listening on TCP 1433 in the container and this is exposed to the port, 1433, on the host.
+- --name sql1 -	Specify a custom name for the container rather than a randomly generated one. If you run more than one container, you cannot reuse this same name.
+- mcr.microsoft.com/mssql/server:2019-CTP3.2-ubuntu -	The SQL Server 2019 CTP3.2 Linux container image.
+
 ### Connecting to SQL Server via command line
 
 	docker exec -it moviesdb /opt/mssql-tools/bin/sqlcmd -S localhost -U sa
 
 - -s means server
 - -u means user
+
+	docker exec -it sql1 "bash"
+
+	/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "<YourNewStrong@Passw0rd>"
+
+### Create and query data
+
+	CREATE DATABASE TestDB
+	SELECT Name from sys.Databases
+	GO
+
+### Insert Data
+
+	USE TestDB
+	CREATE TABLE Inventory (id INT, name NVARCHAR(50), quantity INT)
+	INSERT INTO Inventory VALUES (1, 'banana', 150); INSERT INTO Inventory VALUES (2, 'orange', 154);
+	GO
+
+### Select data
+
+	SELECT * FROM Inventory WHERE quantity > 152;
+	GO
+
+### Exit the sqlcmd command prompt
+
+	QUIT
+
+- To exit the interactive command-prompt in your container, type exit. Your container continues to run after you exit the interactive bash shell.
+
+### Connect from outside the container
+
+	sqlcmd -S <ip_address>,1433 -U SA -P "<YourNewStrong@Passw0rd>"
+
+### Remove your containe
+
+	docker stop sql1
+
+	docker rm sql1
+
 
 Docker Compose Commands
 ==============================
