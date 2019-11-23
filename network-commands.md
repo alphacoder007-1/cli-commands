@@ -1,8 +1,11 @@
 Netowrking Commands for prgrammers
 ====================================
 
-### DNS Queries from Command Line
+### Name Servere lookup (DNS Queries from Command Line )
 
     nslook microsfot.com
 
+    nslookup www.google.com
+
+### 
 
