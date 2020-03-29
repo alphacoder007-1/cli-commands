@@ -164,6 +164,14 @@ Docker Compose Commands
 ### Run the docker compose file
 	
 	docker-compose up
+	
+### Bring down the docker compose file
+	
+	docker-compose down
+	
+### build the docker compose file
+	
+	docker-compose build
 
 
 Pushing Image to docker hub
