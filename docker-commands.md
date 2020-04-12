@@ -46,8 +46,8 @@ Docker Image Commands
 
 	docker build -t [imagename] . 
 
-- -t tags as image
-- . means current directory
+- **-t** tags as image
+- **.** dot represents current directory
 
 Docker Containers Commands 
 ===========================
@@ -60,9 +60,9 @@ Docker Containers Commands
 
 	docker run -it --rm -p 5000:80 --name [container-name] [image-name] 
 
-- -it flag will take all the ouput from the container and pipe it to console window
-- --rm will remove the intermediary build
-- -p will map the port 80 from the container to port 5000 on local machine  
+- **-it** flag will take all the ouput from the container and pipe it to console window
+- **--rm** will remove the intermediary build
+- **-p** will map the port 80 from the container to port 5000 on local machine  
 
 ### List all the containers running
 	
@@ -76,6 +76,7 @@ Docker Containers Commands
 	
 ### List all the containers available
 
+	docker ps -a
 	docker container list -a
 
 ### delete the container 
@@ -151,7 +152,7 @@ Docker for SQL Server
 
 	sqlcmd -S <ip_address>,1433 -U SA -P "<YourNewStrong@Passw0rd>"
 
-### Remove your containe
+### Remove your container
 
 	docker stop sql1
 
