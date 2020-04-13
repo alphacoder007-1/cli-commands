@@ -178,17 +178,65 @@ Docker Compose Commands
 Pushing Image to docker hub
 =================================
 
-- First we need to tag the image with our username 
+### First we need to tag the image with our username 
 
-		docker tag [imageid] [username]/[imagename]:[tag-name]
+	docker tag [imageid] [username]/[imagename]:[tag-name]
 
-- Secondly, We need to login  
+### Secondly, We need to login  
 
-		docker login
+	docker login
 
-- And finally we need to push 
+### And finally we need to push 
 
-		docker push [username]/[imagename]:[tag-name]
+	docker push [username]/[imagename]:[tag-name]
+
+
+Docker Cli Commands from Dot Net Karma
+============================================
+### Docker version
+	docker --version
+
+### List all containers
+	docker ps -a
+ 
+### MS-SQL Container Running
+	docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=<Strong@Pwd>' -e 'MSSQL_PID=Express' -p 1433:1433 --rm -d mcr.microsoft.com/mssql/server:latest
+
+
+### INSPECT - Find IP address of the Running container
+
+	docker inspect -f "{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}" <ContainerID | ContainerName>
+
+- Required to connect to sql server from dotnet code
+
+
+### Docker Network list
+
+	docker network ls
+
+- there are four types of network drives (bridge, host, overlay, null)
+- bridge - 
+- host - host are independent and each containers are disconnected
+- overlay - multiple machines and multiple containers communicate each other
+- null - no networking , simlpe conatainer and deploy ina single container
+
+### Creating bridge network
+
+	 docker network create --driver bridge mynetwork
+
+### Network Inspect
+
+	docker network inspect mynetwork
+
+### Connecting and Changing container network
+
+	docker network connect mynetwork <ContainerID | ContainerName>
+
+### Disconnecting the container from network
+
+	docker network disconnect mynetwork <ContainerID | ContainerName>
+
+### 
 
 
 
