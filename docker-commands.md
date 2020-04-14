@@ -202,6 +202,21 @@ Docker Cli Commands from Dot Net Karma
 ### MS-SQL Container Running
 	docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=<Strong@Pwd>' -e 'MSSQL_PID=Express' -p 1433:1433 --rm -d mcr.microsoft.com/mssql/server:latest
 
+### MS SQL Container RUN with name and Volume (Ubuntu)
+
+	docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Purple1!' -e 'MSSQL_PID=Express' -p 1433:1433 --name mssql -v sqlvolume:/var/opt/mssql  --rm -d mcr.microsoft.com/mssql/server:latest	
+
+### MS SQL Container RUN with name and Volume (Windows)
+
+	docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Purple1!' -e 'MSSQL_PID=Express' -p 1433:1433 --name mssql -v C:/docker/sqldb:/var/opt/mssql  --rm -d mcr.microsoft.com/mssql/server:latest
+
+### MS-sql-server EF Code first database update via vs code
+
+	dotnet ef database update --verbose
+
+### Datasource name for connecting to MS-SQL Server(outside container) from app running inside container
+
+	host.docker.internal,1433
 
 ### INSPECT - Find IP address of the Running container
 
@@ -236,7 +251,42 @@ Docker Cli Commands from Dot Net Karma
 
 	docker network disconnect mynetwork <ContainerID | ContainerName>
 
-### 
+Docker Service (Docker Swarm)
+===============================
+
+### Intialise the docker swarm part of orchestration
+
+	docker swarm init
+
+### List docker services
+
+	docker service ls
+
+### Build image using -f flag
+
+	docker build -t alphacoder007/fairview:5.0 . -f <Dockerfilepath>
+
+- -f is for docker filename path
+
+### Creating docker service
+
+	docker service create --publish 5015:80 --name fairviewservice alphacoder007/fairview:5.0
+
+
+### Scale up Docker Service
+
+	docker service scale fairviewservice=3
+
+- this create 3 replicas of the container 
+
+### Scale down docker service
+
+	docker service scale fairviewservice=1
+
+
+
+
+
 
 
 
