@@ -301,7 +301,7 @@ Kubernetes
 ### Access Dashboard
 	
 	http://localhost:8001/api/v1/namespaces/kube-system/services/http:kubernetes-dashboard:/proxy/#!/overview?namespace=default
-
+k
 ### Create deployment
 
 	kubectl apply -f .\deployment.yml
@@ -325,6 +325,13 @@ Kubernetes
 ### List Services
 
 	kubectl get service
+
+### Delete Deployments 
+	kubectl delete deployments kdmvc
+
+### Delete Service
+	kubectl delete service kdmvc-service
+
 
 
 
