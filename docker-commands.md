@@ -284,8 +284,47 @@ Docker Service (Docker Swarm)
 	docker service scale fairviewservice=1
 
 
+Kubernetes
+===============================================
+### Verify Version
 
+	kubectl version
 
+### Deploy Dashboard GUI
+
+	kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/alternative/kubernetes-dashboard.yaml
+
+### Access Dashboard using the kubectl command-line tool
+
+	kubectl proxy
+
+### Access Dashboard
+	
+	http://localhost:8001/api/v1/namespaces/kube-system/services/http:kubernetes-dashboard:/proxy/#!/overview?namespace=default
+
+### Create deployment
+
+	kubectl apply -f .\deployment.yml
+
+### List Deployments
+
+	kubectl get deployments
+
+### List of Nodes
+
+	kubectl get nodes
+
+### Lsit of Pods
+
+	kubectl get pods
+
+### Creating Service
+
+	kubectl apply -f .\service.yml
+
+### List Services
+
+	kubectl get service
 
 
 
