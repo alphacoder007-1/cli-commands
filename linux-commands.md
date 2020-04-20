@@ -180,4 +180,45 @@ echo $originalAddress >> ~/ip.txt
 - ctrl+O for save
 - ctrl+X for exit
 
+### change the bash script to run in loop
 
+```bash
+  GNU nano 2.9.3                                                                                       write-ip.sh                                                                                                 
+
+#!/bin/bash
+
+while [ : ]
+do
+
+        originalAddress=$(ifconfig | grep "inet " | head -n 1 | cut -d 'm' -f 1 | cut -d 't' -f 2 | cut -d 'n' -f 1)
+
+        echo "$(date) $originalAddress" >> ~/ip.txt
+
+        sleep 10
+
+done
+
+```
+
+### execute and see output in another terminal tab
+
+    $ ./write-ip.sh
+
+### Task Scheduling CRON
+
+    $ crontab -e
+
+- edit the write-ip.sh file as below
+```bash
+    #!/bin/bash
+
+    originalAddress=$(ifconfig | grep "inet " | head -n 1 | cut -d 'm' -f 1 | cut -$
+
+    echo "$(date) $originalAddress" >> ~/ip.txt
+```
+- choose the editor nano for editing cron job
+- schedule the ./write-ip.sh file for every one minute as like "* * * * * ./write-ip.sh"
+
+### 
+
+    
