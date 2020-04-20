@@ -136,4 +136,48 @@ Commands Line
 
 ###  unzipping all archived files
 
-    $ 
+    $ find /var/log/syslog*.gz -type f -print0 | xargs -0 sudo gunzip 
+
+### another pipe example
+
+    $ find /var/log/syslog* -type f -print0 | xargs -0 cat
+
+### grep command
+
+    $ find /var/log/syslog* -type f -print0 | xargs -0 cat | grep "NetworkManager"
+    $ find /var/log/syslog* -type f -print0 | xargs -0 cat | grep "NetworkManager.*warn*"
+
+###  network address
+
+    $ ifconfig
+    $ ifconfig | grep "inet "
+    $ ifconfig | grep "inet " | head -n 1
+
+- head -n 1 meaning just read the first line
+
+### using cut command
+
+    $ ifconfig | grep "inet " | head -n 1 | cut -d 'm' -f 1 | cut -d 't' -f 2 | cut -d 'n' -f 1
+
+### bash script and nano
+
+```bash
+#!/bin/bash
+
+originalAddress=$(ifconfig | grep "inet " | head -n 1 | cut -d 'm' -f 1 | cut -d 't' -f 2 | cut -d 'n' -f 1)
+
+echo $originalAddress >> ~/ip.txt
+```
+
+### set permission to bash file
+
+    $ chmod a+x ./write-ip.sh
+
+### nano text editot
+
+    $ nano write-ip.sh
+
+- ctrl+O for save
+- ctrl+X for exit
+
+
