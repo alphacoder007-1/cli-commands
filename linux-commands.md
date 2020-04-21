@@ -219,6 +219,90 @@ done
 - choose the editor nano for editing cron job
 - schedule the ./write-ip.sh file for every one minute as like "* * * * * ./write-ip.sh"
 
-### 
+NGINX Web Server
+=====================
 
+### updating local software repo
+
+    $ sudo apt-get update
+
+- if installing new software we should first run apt-get update to make sure my local packages are updated
+
+### search for software
+
+    $ apt search nginx
+
+- if we dont know the name of the package we are searching then use this command
+
+### installing nginx
+
+    $ sudo apt-get install nginx
+
+### installing nodejs
+
+    $ sudo apt-get install nodejs
+
+### create UI project and build it
+
+    $ vue create .
+    $ npm run serve
+    $ npm run build
+
+### make app directory for deployment 
     
+    $ sudo mkdir -p /var/www/focusapp.net
+
+- p aka --parent  no error if existing, make parent directories as needed
+
+### copy everything from build directory dist to /var/www/app folder
+
+    mahesh@mahesh-ubuntu:~/repo/byebye/dist$ cp -r * /var/www/focusapp.net
+
+
+### ngnix uses text config file to describe site it hosts we can copy this file to our app
+    $ sudo cp /etc/nginx//site-available/default /etc/nginx/sites-available/focusapp.net
+
+### open the previosuly created file focusapp.net
+
+    $ nano /etc/nginx/site-available/focusapp.net
+
+### edit the configuration file as below
+
+```bash
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /var/www/focusapp.net;
+
+        # Add index.php to the list if you are using PHP
+        index index.html;
+
+        server_name localhost;
+
+```
+
+### creating link between config file and site
+
+    $ sudo ln -s /etc/nginx/sites-available//focusapp.net /etc/nginx/sites-enabled/
+
+- ln for link and -s for make symbolic link instead of hard link
+
+### remove the default link enabled
+
+    $ sudo rm /etc/nginx/sites-enabled/default 
+
+### restart the nginx server
+
+    $ sudo service nginx restart
+
+### browse to the locahost url and congrats
+
+    http://localhost/
+
+SSH and Command Line
+===================================
+
+### 
+    
+
