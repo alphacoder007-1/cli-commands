@@ -303,6 +303,118 @@ server {
 SSH and Command Line
 ===================================
 
-### 
-    
+### Connect remote server
 
+    $ ssh username@ipaddress
+
+### list the logs
+
+    $ ls -l /var/log/syslog*
+
+### ssh keygen command for securely connecting to remote machine
+
+    $ ssh-keygen -b 2048 -t rsa -C go2mahesh@gmail.com
+
+### ssh keys are stored under hidden .ssh folder
+
+    $ ls .ssh
+    $ cat .ssh/id_rsa.pub
+
+
+### adding generated ssh public key to the server
+
+    $ ssh-copy-id -i .ssh/id_rsa.pub mahesh@ipaddress
+
+### check the key added to the server as below
+
+    $ ls .ssh
+    $ $ cat .ssh/authorized_keys 
+
+### log off from the server
+
+    $ exit
+
+### from local machine directly login to remote without the need of password
+
+    $  ssh mahesh@<ipaddress>
+
+SSH and File Transfer with SCP
+=======================================
+
+### install nginx on server
+
+    $ sudo apt-get update && sudo apt-get install ngnix
+
+### verify the nginx version on local and server
+
+    $ nginx -v
+
+### update tmkhe ngnix config on local machine 
+
+    $ sudo nano /etc/nginx/sites-available/focusapp.net
+
+```bash
+# Add index.php to the list if you are using PHP
+index index.html index.htm index.nginx-debian.html;
+
+server_name _;
+```
+- underscore allow us to use any domain name
+
+### change the remote server read only permission
+
+    $ sudo chmod a+w /etc/nginx/sites-available/
+    $ sudo chmod a+x /etc/nginx/sites-available/
+
+### Secure copy the /etc/nginx/sites-available/appname.net file to remote server
+
+    $scp  /etc/nginx/sites-available/focusapp.net mahesh@<Remote-Ip-address>:/etc/nginx/sites-available
+
+### change the owner to root
+
+    $ sudo chown root /etc/nginx/sites-available/focusapp.net
+
+### create link from sites-available to sites-enabled
+
+    $ sudo service nginx restart
+
+    $ sudo ln /etc/nginx/sites-available/focusapp.net /etc/nginx/sites-enabled/
+    
+    $ sudo rm /etc/nginx/sites-enabled/default
+ 
+    $ sudo service nginx restart
+
+###  on the client machine create a file 
+
+    $ touch .ssh/config
+
+- add the following content
+
+```bash
+Host server
+        HostName        <Servername> or <ipaddress>
+        User            mahesh
+        IdentityFile    ~/.ssh/id_rsa
+
+```
+
+### now you can connect to server as below
+
+    $ ssh server
+
+### add write adn execute permission to www folder
+
+    $ sudo chmod a+w /var/www/
+
+    $ sudo chmod a+x /var/www/
+
+### from client copy all files to server
+
+    client $ scp -r /var/www/focusapp.net server:/var/www/focusapp.net
+
+    server $ ls -l /var/www/focusapp.net/
+
+    brose to the http://<serverip>/
+
+
+     
