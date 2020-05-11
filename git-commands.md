@@ -159,6 +159,62 @@ Merging Made Easy
 
     git ls-remote
 
+### to fetch feaure4 from master
+
+    git fetch origin feature4
+
+### to list all branches from remote
+
+    git branch -a
+
+ ### to setup a branch in local repository that will track the remote repo
+
+    git checkout --track origin/feature4   
+
+## Git Diff
+
+### changed and not staged for commit
+
+    git diff
+
+### What is changed and staged for commit
+
+    git diff --cached   (git commit)
+
+### What is changed since last commit
+
+    git diff Head       (git commit -a)
+
+Commit diff
+===================
+
+### Specific Commit and current
+
+    git diff <commit>
+
+### Specific Commit and staged
+
+    git diff --cached <commit>
+
+### Difference between two commits
+
+    git diff <commit> <commit>
+
+Branch diff
+===============
+
+### Difference between tips of branches
+
+    git diff feature master
+
+### Chnaged in master since feature was started off of it
+
+    git diff feature...master
+
+### Difference in file.txt on two branches
+
+    git diff feature master file.txt
+
 
 
 
