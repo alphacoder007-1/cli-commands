@@ -416,5 +416,9 @@ Host server
 
     brose to the http://<serverip>/
 
+### copy contents of one folder to another folder
+
+    scp -r /var/www/napa.service/* server:/var/www/napa.service
+
 
      
